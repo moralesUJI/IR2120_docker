@@ -16,6 +16,7 @@ RUN wget -U firefox  https://archive-docs.niryo.com/download/NiryoStudio/v4.1.2/
 RUN unzip NiryoStudio-linux-x64_v4.1.2.zip
 RUN mv dist-app/NiryoStudio-linux-x64 /opt/niryo/NiryoStudio
 RUN sudo chmod 4755 NiryoStudio/chrome-sandbox
+RUN sudo ln -s /opt/niryo/NiryoStudio/NiryoStudio /usr/bin/NiryoStudio
 RUN rmdir dist-app
 
 USER niryo
