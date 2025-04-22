@@ -1,0 +1,54 @@
+FROM osrf/ros:melodic-desktop-full
+
+LABEL name="Niryo Docker for IR2120"
+
+# Create a new user and add to sudoers
+RUN useradd -ms /bin/sh niryo && \
+    echo "niryo ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/niryo
+
+RUN apt-get update \
+    && apt-get install -y \
+    wget \ 
+    unzip \ 
+    libxtst6 \
+    ffmpeg \
+    mesa-utils \
+    libcanberra-gtk-module libcanberra-gtk3-module \
+    && rm -rf /var/lib/apt/lists/*
+
+# Root user isntallation
+WORKDIR /opt/niryo
+RUN wget -U firefox  https://archive-docs.niryo.com/download/NiryoStudio/v4.1.2/Linux/NiryoStudio-linux-x64_v4.1.2.zip
+RUN unzip NiryoStudio-linux-x64_v4.1.2.zip
+RUN mv dist-app/NiryoStudio-linux-x64 /opt/niryo/NiryoStudio
+RUN sudo chmod 4755 NiryoStudio/chrome-sandbox
+RUN sudo ln -s /opt/niryo/NiryoStudio/NiryoStudio /usr/bin/NiryoStudio
+RUN rmdir dist-app
+
+# Install NVIDIA software
+RUN sudo apt-get update \
+    && sudo apt-get -q -y upgrade \
+    && sudo apt-get install -y -qq --no-install-recommends \
+    libglvnd0 \
+    libgl1 \
+    libglx0 \
+    libegl1 \
+    libxext6 \
+    libx11-6 \
+    && sudo apt-get autoremove -y \
+    && sudo apt-get clean -y \
+    && sudo rm -rf /var/lib/apt/lists/*
+
+# Env vars for the nvidia-container-runtime.
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES=graphics,utility,compute
+ENV QT_X11_NO_MITSHM=1
+
+
+# Set the working directory to the user's home
+USER niryo
+WORKDIR /home/niryo
+COPY --chown=niryo post_install.sh post_install.sh
+RUN chmod +x post_install.sh
+RUN ./post_install.sh
+RUN rm ./post_install.sh
