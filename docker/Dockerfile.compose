@@ -19,7 +19,7 @@ RUN apt-get update \
 
 # Root user isntallation
 WORKDIR /opt/niryo
-RUN wget -U firefox  https://archive-docs.niryo.com/download/NiryoStudio/v4.1.2/Linux/NiryoStudio-linux-x64_v4.1.2.zip
+RUN wget -U firefox https://s3-niryo-public.s3.eu-west-3.amazonaws.com/niryo_studio/v4.1.2/NiryoStudio-linux-x64_v4.1.2.zip
 RUN unzip NiryoStudio-linux-x64_v4.1.2.zip
 RUN mv dist-app/NiryoStudio-linux-x64 /opt/niryo/NiryoStudio
 RUN sudo chmod 4755 NiryoStudio/chrome-sandbox
