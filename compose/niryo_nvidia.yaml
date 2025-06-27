@@ -1,6 +1,7 @@
 services:
   niryo:
     image: niryo:latest
+    container_name: niryo-nvidia-compose
 
     environment:
       - DISPLAY=${DISPLAY}
