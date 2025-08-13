@@ -26,6 +26,20 @@ RUN sudo chmod 4755 NiryoStudio/chrome-sandbox
 RUN sudo ln -s /opt/niryo/NiryoStudio/NiryoStudio /usr/bin/NiryoStudio
 RUN rmdir dist-app
 
+# Install NVIDIA software
+RUN sudo apt-get update \
+    && sudo apt-get -q -y upgrade \
+    && sudo apt-get install -y -qq --no-install-recommends \
+    libglvnd0 \
+    libgl1 \
+    libglx0 \
+    libegl1 \
+    libxext6 \
+    libx11-6 \
+    && sudo apt-get autoremove -y \
+    && sudo apt-get clean -y \
+    && sudo rm -rf /var/lib/apt/lists/*
+
 # Installing required ros Niryo NED packages
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' 
 RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add - \

@@ -1,6 +1,6 @@
 services:
   niryo:
-    image: niryo:latest
+    image: niryo.nvidia:latest
     container_name: niryo-nvidia-compose
 
     environment:
@@ -27,6 +27,7 @@ services:
     volumes:
       - /dev:/dev
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/niryo_ws:/home/niryo/niryo_ws
 
     devices:
       - /dev/dri:/dev/dri
