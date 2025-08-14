@@ -1,6 +1,6 @@
 # Niryo docker
 Docker file of the Niryo NED software
-
+docker
 - [Niryo docker](#niryo-docker)
   - [Prerequisites](#prerequisites)
   - [Building images](#building-images)
