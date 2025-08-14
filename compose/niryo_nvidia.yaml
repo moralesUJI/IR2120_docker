@@ -1,6 +1,6 @@
 services:
   niryo:
-    image: niryo.nvidia:latest
+    image: niryo:nvidia
     container_name: niryo-nvidia-compose
 
     environment:

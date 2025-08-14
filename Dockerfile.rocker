@@ -1,4 +1,4 @@
-FROM osrf/ros:melodic-desktop-full
+FROM osrf/ros:melodic-desktop-full AS rocker
 
 LABEL name="Niryo Docker for IR2120"
 
@@ -12,7 +12,7 @@ RUN apt-get update \
 
 # Set the working directory to the user's home
 WORKDIR /opt/niryo
-RUN wget -U firefox  https://archive-docs.niryo.com/download/NiryoStudio/v4.1.2/Linux/NiryoStudio-linux-x64_v4.1.2.zip
+RUN wget -U firefox https://s3-niryo-public.s3.eu-west-3.amazonaws.com/niryo_studio/v4.1.2/NiryoStudio-linux-x64_v4.1.2.zip
 RUN unzip NiryoStudio-linux-x64_v4.1.2.zip
 RUN mv dist-app/NiryoStudio-linux-x64 /opt/niryo/NiryoStudio
 RUN sudo chmod 4755 NiryoStudio/chrome-sandbox
@@ -21,10 +21,7 @@ RUN rmdir dist-app
 
 USER niryo
 WORKDIR /home/niryo
-COPY --chown=niryo post_install.sh post_install.sh
-RUN chmod +x post_install.sh
-RUN ./post_install.sh
-RUN rm ./post_install.sh
+RUN /usr/bin/gazebo -v; sed -i 's/ignitionfuel/ignitionrobotics/g' ~/.ignition/fuel/config.yaml 
 
 WORKDIR /home/niryo
 

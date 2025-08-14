@@ -1,0 +1,18 @@
+services:
+  app-dev:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      args: 
+        ENVIRONMENT: base
+    image: niryo:base
+    container_name: niryo-base-compose
+
+  app-nvidia:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      args: 
+        ENVIRONMENT: nvidia
+    image: niryo:nvidia
+    container_name: niryo-nvidia-compose

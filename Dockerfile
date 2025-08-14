@@ -1,4 +1,4 @@
-FROM osrf/ros:melodic-desktop-full
+FROM osrf/ros:melodic-desktop-full AS base
 
 LABEL name="Niryo Docker for IR2120"
 
@@ -26,7 +26,7 @@ RUN sudo chmod 4755 NiryoStudio/chrome-sandbox
 RUN sudo ln -s /opt/niryo/NiryoStudio/NiryoStudio /usr/bin/NiryoStudio
 RUN rmdir dist-app
 
-# Install NVIDIA software
+# Install graphics software
 RUN sudo apt-get update \
     && sudo apt-get -q -y upgrade \
     && sudo apt-get install -y -qq --no-install-recommends \
@@ -84,3 +84,16 @@ RUN rosdep update --rosdistro melodic && rosdep install --from-paths src --ignor
 
 RUN /bin/bash -c "source /opt/ros/melodic/setup.bash && catkin_make"
 RUN echo "source $(pwd)/devel/setup.bash" >> ~/.bashrc
+WORKDIR /home/niryo
+
+FROM base AS nvidia
+
+USER root
+
+# Env vars for the nvidia-container-runtime.
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES=graphics,utility,compute
+ENV QT_X11_NO_MITSHM=1
+
+USER niryo
+WORKDIR /home/niryo
