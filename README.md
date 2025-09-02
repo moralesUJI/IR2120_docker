@@ -43,7 +43,7 @@ Before, if not exists a folder named _niryo_ws_ should be created on the base us
 
 ```
 cd $HOME
-mkdir-p  niryo_ws
+mkdir -p  niryo_ws
 ```
 
 To start the app:
