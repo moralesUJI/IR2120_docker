@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
       args: 
         ENVIRONMENT: base
-    image: niryo:base
+    image: ghcr.io/moralesuji/ir2120_docker/niryo:base
     container_name: niryo-base-compose
 
   app-nvidia:
@@ -14,5 +14,5 @@ services:
       dockerfile: Dockerfile
       args: 
         ENVIRONMENT: nvidia
-    image: niryo:nvidia
+    image: ghcr.io/moralesuji/ir2120_docker/niryo:nvidia
     container_name: niryo-nvidia-compose

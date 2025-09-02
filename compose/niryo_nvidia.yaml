@@ -1,6 +1,6 @@
 services:
   niryo:
-    image: niryo:nvidia
+    image: ghcr.io/moralesuji/ir2120_docker/niryo:nvidia
     container_name: niryo-nvidia-compose
 
     environment:

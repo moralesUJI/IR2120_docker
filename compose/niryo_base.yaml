@@ -1,6 +1,6 @@
 services:
   niryo:
-    image: niryo:base
+    image: ghcr.io/moralesuji/ir2120_docker/niryo:base
     container_name: niryo-base-compose
 
     environment:

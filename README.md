@@ -20,8 +20,8 @@ Depending on the intended use of the nvidia drivers/rocker script different imag
 
 | | _DOCKERFILE_ | _TAG_ | _IMAGE_NAME_ | _COMPOSE_FILE_ |
 | --- | --- | --- | --- | --- | 
-| No NVIDIA driver | `Dockerfile` | `base` | `niryo:base`|  `niryo_base.yaml` |
-| NVIDIA driver | `Dockerfile` | `nvidia` | `niryo:nvidia` | `niryo_nvidia.yaml` |
+| No NVIDIA driver | `Dockerfile` | `base` | `ghcr.io/moralesuji/ir2120_docker/niryo:base`|  `niryo_base.yaml` |
+| NVIDIA driver | `Dockerfile` | `nvidia` | `ghcr.io/moralesuji/ir2102_docker/niryo:nvidia` | `niryo_nvidia.yaml` |
 | Rocker Script | `Dockerfile.rocker`| `rocker` | `niryo:rocker`
 
 Substitute in the commands of the following sections the options you prefer for the names in CAPS.
