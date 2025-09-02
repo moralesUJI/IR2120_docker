@@ -1,20 +1,46 @@
 # Niryo docker
-Includes the requires Niryo NED software
-docker
+Dockerfiles and images the include all required Niryo NED software for the class "IR2120 - Manipulació robótica" at [**Universtat Jaume I**](https://www.uji.es)
+
 - [Niryo docker](#niryo-docker)
   - [Prerequisites](#prerequisites)
+  - [Donwloading prebuild images](#donwloading-prebuild-images)
   - [Building images](#building-images)
   - [Executing images with compose](#executing-images-with-compose)
   - [Use with rocker](#use-with-rocker)
   - [Removing efficiently images and containers](#removing-efficiently-images-and-containers)
 
 
+There are several ways to use the contents on this repository:
+
+1. Downloading the prebuilt images.
+2. Cloning the repository and building the images locally. 
+
+The following sections explain how to go through all these steps and use the images. 
+
 ## Prerequisites
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
-- If you plan to allow docker access nvidia card you need to install [_nvidia-container-toolkit_](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
-- [Rocker](https://github.com/osrf/rocker) _Please note that Rocker is a customized home-made script, and its compatibility with upcoming versions of docker and long-term support is not guaranteed_.
+- [_nvidia-container-toolkit_](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) if you plan to allow docker access nvidia card
+- [Rocker](https://github.com/osrf/rocker) if you prefer instead of standard **docker** commands. _Please note that Rocker is a customized home-made script, and its compatibility with upcoming versions of docker and long-term support is not guaranteed_.
+
+## Donwloading prebuild images
+This is the easiest way to get the necessary images. The packages section on github repo contains to up-to-date fully functional images. There are two available images:
+
+- [ghcr.io/moralesuji/ir2120_docker/niryo:nvidia](https://github.com/moralesUJI/IR2120_docker/pkgs/container/ir2120_docker%2Fniryo) that includes the necessary libraries to use host computer nvidia graphics card. 
+- [ghcr.io/moralesuji/ir2120_docker/niryo:base](https://github.com/moralesUJI/IR2120_docker/pkgs/container/ir2120_docker%2Fniryo/488081437?tag=base), in case the host computer does not have an nvidia graphics card.
+
+Both of the can be downloaded respectively using the commands
+```
+  docker pull ghcr.io/moralesuji/ir2120_docker/niryo:nvidia
+```
+or 
+```
+  docker pull ghcr.io/moralesuji/ir2120_docker/niryo:base
+```
+
 
 ## Building images
+
+In case you want to build the images locally you must first clone this repository and then follow the instructions on this section. 
 
 Depending on the intended use of the nvidia drivers/rocker script different images and configuration files are available.
 
