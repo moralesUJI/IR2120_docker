@@ -1,5 +1,5 @@
 # Niryo docker
-Dockerfiles and images the include all required Niryo NED software for the class "IR2120 - Manipulació robótica" at [**Universtat Jaume I**](https://www.uji.es)
+Dockerfiles and images that include all required Niryo NED software for the course "IR2120 - Manipulació robótica" at [**Universtat Jaume I**](https://www.uji.es)
 
 - [Niryo docker](#niryo-docker)
   - [Prerequisites](#prerequisites)
@@ -19,16 +19,16 @@ The following sections explain how to go through all these steps and use the ima
 
 ## Prerequisites
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
-- [_nvidia-container-toolkit_](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) if you plan to allow docker access nvidia card
-- [Rocker](https://github.com/osrf/rocker) if you prefer instead of standard **docker** commands. _Please note that Rocker is a customized home-made script, and its compatibility with upcoming versions of docker and long-term support is not guaranteed_.
+- [_nvidia-container-toolkit_](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) if you plan to allow docker access nvidia-compatible graphics card
+- [Rocker](https://github.com/osrf/rocker) if you prefer it instead of standard **docker** commands. _Please note that Rocker is a customized home-made script, and its compatibility with upcoming versions of docker and long-term support is not guaranteed_.
 
 ## Donwloading prebuild images
-This is the easiest way to get the necessary images. The packages section on github repo contains to up-to-date fully functional images. There are two available images:
+This is the easiest way to get the necessary images. The packages section on github repo contains up-to-date fully functional images. There are two available images:
 
-- [ghcr.io/moralesuji/ir2120_docker/niryo:nvidia](https://github.com/moralesUJI/IR2120_docker/pkgs/container/ir2120_docker%2Fniryo) that includes the necessary libraries to use host computer nvidia graphics card. 
-- [ghcr.io/moralesuji/ir2120_docker/niryo:base](https://github.com/moralesUJI/IR2120_docker/pkgs/container/ir2120_docker%2Fniryo/488081437?tag=base), in case the host computer does not have an nvidia graphics card.
+- [ghcr.io/moralesuji/ir2120_docker/niryo:nvidia](https://github.com/moralesUJI/IR2120_docker/pkgs/container/ir2120_docker%2Fniryo) that includes the necessary libraries to use host computer woth compatible nvidia graphics card. 
+- [ghcr.io/moralesuji/ir2120_docker/niryo:base](https://github.com/moralesUJI/IR2120_docker/pkgs/container/ir2120_docker%2Fniryo/488081437?tag=base), in case the host computer does not have an nvidia compatible graphics card.
 
-Both of the can be downloaded respectively using the commands
+Both of them can be downloaded respectively using the commands
 ```
   docker pull ghcr.io/moralesuji/ir2120_docker/niryo:nvidia
 ```
@@ -65,7 +65,7 @@ docker build --target _TAG_ -t IMAGE_NAME .
 ## Executing images with _docker compose_
 Once the images has been built they can be launched with de _compose_ command.
 
-Before, if not exists a folder named _niryo_ws_ should be created on the base users account. This folder will shared between the host and the container, and allows to store permanent data between docker sessions.
+Before, if not exists, a folder named _niryo_ws_ should be created on the user home. This folder will be shared between the host and the container, and allows to store permanent data between docker sessions.
 
 ```
 cd $HOME
@@ -107,7 +107,7 @@ The _-v_ parameter can be used to specify a different shared folder.
 
 This command will launch a _bash shell_ from where launch other commands. If a specific command wants to be executed on the container just simply append the command at the end of the whole string above.
 
-Finally, in case that the non nvidia image:
+Finally, in case that the non-nvidia image:
 ```
 docker run -it --rm   --name niryo-base-compose   --env DISPLAY=$DISPLAY   --env XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR   --env QT_X11_NO_MITSHM=1   --network host   --privileged   --security-opt seccomp=unconfined   --security-opt apparmor=unconfined   -v /dev:/dev   -v /tmp/.X11-unix:/tmp/.X11-unix   -v ~/niryo_ws:/home/niryo/niryo_ws   --device /dev/dri:/dev/dri   ghcr.io/moralesuji/ir2120_docker/niryo:base 
 ```
@@ -128,7 +128,7 @@ Description of the parameters:
 * **--user**: Creates a user and a home folder with the host username, and starts the docker container with that user
 
 ## Removing efficiently images and containers
-During the dvelopment process is common to create images and containers that remain _defunct_ or _hidden_. 
+During the development process is common to create images and containers that remain _defunct_ or _hidden_. 
 
 To remove al dead or hidden containers only, execute:
 
