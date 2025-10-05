@@ -86,6 +86,15 @@ RUN /bin/bash -c "source /opt/ros/melodic/setup.bash && catkin_make"
 RUN echo "source $(pwd)/devel/setup.bash" >> ~/.bashrc
 WORKDIR /home/niryo
 
+# Installing pyniryo for python3
+RUN sudo apt install -y python3-pip
+RUN pip3 install --upgrade pip
+RUN pip3 install -v numpy
+RUN pip3 install -v opencv-python
+RUN pip3 install pyniryo==1.1.1
+RUN pip3 install pyniryo2
+RUN sudo apt-get install nano
+
 FROM base AS nvidia
 
 USER root

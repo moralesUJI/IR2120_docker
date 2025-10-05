@@ -14,9 +14,6 @@ There are several ways to use the contents on this repository:
 
 1. Downloading the prebuilt images.
 2. Cloning the repository and building the images locally. 
-
-The following sections explain how to go through all these steps and use the images. 
-
 ## Prerequisites
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
 - [_nvidia-container-toolkit_](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) if you plan to allow docker access nvidia-compatible graphics card
