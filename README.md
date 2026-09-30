@@ -38,7 +38,7 @@ or
 
 In case you want to build the images locally you must first clone this repository and then follow the instructions on this section. 
 
-Depending on the intended use of the with/without nvidia drivers different images and configuration files are available.
+Depending on the intended use, with/without nvidia drivers, different images names and configuration files are available.
 
 | | _DOCKERFILE_ | _TAG_ | _IMAGE_NAME_ | _COMPOSE_FILE_ |
 | --- | --- | --- | --- | --- | 
