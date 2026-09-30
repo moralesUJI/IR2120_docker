@@ -7,7 +7,6 @@ Dockerfiles and images that include all required Niryo NED software for the cour
   - [Building images](#building-images)
   - [Executing images with _docker compose_](#executing-images-with-docker-compose)
   - [Executing images with _docker run_](#executing-images-with-docker-run)
-  - [Use with rocker](#use-with-rocker)
   - [Removing efficiently images and containers](#removing-efficiently-images-and-containers)
 
 There are several ways to use the contents on this repository:
@@ -17,7 +16,7 @@ There are several ways to use the contents on this repository:
 ## Prerequisites
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
 - [_nvidia-container-toolkit_](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) if you plan to allow docker access nvidia-compatible graphics card
-- [Rocker](https://github.com/osrf/rocker) if you prefer it instead of standard **docker** commands. _Please note that Rocker is a customized home-made script, and its compatibility with upcoming versions of docker and long-term support is not guaranteed_.
+
 
 ## Donwloading prebuild images
 This is the easiest way to get the necessary images. The packages section on github repo contains up-to-date fully functional images. There are two available images:
@@ -45,7 +44,7 @@ Depending on the intended use of the nvidia drivers/rocker script different imag
 | --- | --- | --- | --- | --- | 
 | No NVIDIA driver | `Dockerfile` | `base` | `ghcr.io/moralesuji/ir2120_docker/niryo:base`|  `niryo_base.yaml` |
 | NVIDIA driver | `Dockerfile` | `nvidia` | `ghcr.io/moralesuji/ir2102_docker/niryo:nvidia` | `niryo_nvidia.yaml` |
-| Rocker Script | `Dockerfile.rocker`| `rocker` | `niryo:rocker`
+
 
 Substitute in the commands of the following sections the options you prefer for the names in CAPS.
 
@@ -108,21 +107,6 @@ Finally, in case that the non-nvidia image:
 ```
 docker run -it --rm   --name niryo-base-compose   --env DISPLAY=$DISPLAY   --env XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR   --env QT_X11_NO_MITSHM=1   --network host   --privileged   --security-opt seccomp=unconfined   --security-opt apparmor=unconfined   -v /dev:/dev   -v /tmp/.X11-unix:/tmp/.X11-unix   -v ~/niryo_ws:/home/niryo/niryo_ws   --device /dev/dri:/dev/dri   ghcr.io/moralesuji/ir2120_docker/niryo:base 
 ```
-
-## Use with rocker
- Build the docker image
-```
-docker build -t niryo:rocker -f Dockerfile.rocker .
-```
-To start the app:
-```
-rocker --x11 --nvidia  --privileged --user niryo:rocker
-```
-Description of the parameters: 
-* **--x11**: Allows X11 connections. Obligatory
-* **--nvidia**: Uses the nvidia drivers.
-* **--privileged**: Allows to execute _NiryoStudio_
-* **--user**: Creates a user and a home folder with the host username, and starts the docker container with that user
 
 ## Removing efficiently images and containers
 During the development process is common to create images and containers that remain _defunct_ or _hidden_. 
