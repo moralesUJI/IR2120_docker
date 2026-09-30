@@ -127,6 +127,4 @@ Finally , in order to remove all of them, dead or alive, efficiently use the fol
 docker system prune -a
 ```
 
-After this images should be rebuilt or prune. 
-
-~~~~
+After this,  images should be rebuilt or downloaded
