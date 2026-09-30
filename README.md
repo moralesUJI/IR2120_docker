@@ -21,7 +21,7 @@ There are several ways to use the contents on this repository:
 ## Donwloading prebuild images
 This is the easiest way to get the necessary images. The packages section on github repo contains up-to-date fully functional images. There are two available images:
 
-- [ghcr.io/moralesuji/ir2120_docker/niryo:nvidia](https://github.com/moralesUJI/IR2120_docker/pkgs/container/ir2120_docker%2Fniryo) that includes the necessary libraries to use host computer woth compatible nvidia graphics card. 
+- [ghcr.io/moralesuji/ir2120_docker/niryo:nvidia](https://github.com/moralesUJI/IR2120_docker/pkgs/container/ir2120_docker%2Fniryo) that includes the necessary libraries to use host computer with compatible nvidia graphics card. 
 - [ghcr.io/moralesuji/ir2120_docker/niryo:base](https://github.com/moralesUJI/IR2120_docker/pkgs/container/ir2120_docker%2Fniryo/488081437?tag=base), in case the host computer does not have an nvidia compatible graphics card.
 
 Both of them can be downloaded respectively using the commands
@@ -38,7 +38,7 @@ or
 
 In case you want to build the images locally you must first clone this repository and then follow the instructions on this section. 
 
-Depending on the intended use of the nvidia drivers/rocker script different images and configuration files are available.
+Depending on the intended use of the with/without nvidia drivers different images and configuration files are available.
 
 | | _DOCKERFILE_ | _TAG_ | _IMAGE_NAME_ | _COMPOSE_FILE_ |
 | --- | --- | --- | --- | --- | 
@@ -131,3 +131,4 @@ docker system prune -a
 
 After this images should be rebuilt or prune. 
 
+~~~~
